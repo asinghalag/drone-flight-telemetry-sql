@@ -16,11 +16,12 @@ def main() -> None:
     # Create a cursor for running SQL commands
     cursor = connection.cursor()
 
-    # Create the flight_logs table if it does not already exist
+    # Create the flight_logs table with a new phase column
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS flight_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             timestamp_seconds REAL NOT NULL,
+            phase TEXT NOT NULL,
             altitude_m REAL NOT NULL,
             battery_percent REAL NOT NULL,
             pitch_deg REAL NOT NULL,
@@ -32,12 +33,12 @@ def main() -> None:
         )
     """)
 
-    # Save table creation
+    # Save the table creation
     connection.commit()
 
     print("Database setup complete.")
     print(f"Database path: {db_path}")
-    print("Table ready: flight_logs")
+    print("Table ready: flight_logs (with phase column)")
 
     # Close the database connection
     connection.close()

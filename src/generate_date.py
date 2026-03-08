@@ -3,6 +3,48 @@ from pathlib import Path
 import random
 
 
+def insert_row(
+    cursor,
+    timestamp: float,
+    phase: str,
+    altitude: float,
+    battery: float,
+    pitch: float,
+    roll: float,
+    yaw: float,
+    motor_rpm: int,
+    gps_lat: float,
+    gps_lon: float
+) -> None:
+    # Insert one telemetry row into the database
+    cursor.execute("""
+        INSERT INTO flight_logs (
+            timestamp_seconds,
+            phase,
+            altitude_m,
+            battery_percent,
+            pitch_deg,
+            roll_deg,
+            yaw_deg,
+            motor_rpm,
+            gps_lat,
+            gps_lon
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (
+        timestamp,
+        phase,
+        altitude,
+        battery,
+        pitch,
+        roll,
+        yaw,
+        motor_rpm,
+        gps_lat,
+        gps_lon
+    ))
+
+
 def main() -> None:
     # Build path to the database file
     db_path = Path("data") / "drone_flight.db"
@@ -45,30 +87,10 @@ def main() -> None:
         gps_lat += random.uniform(-0.00001, 0.00001)
         gps_lon += random.uniform(-0.00001, 0.00001)
 
-        cursor.execute("""
-            INSERT INTO flight_logs (
-                timestamp_seconds,
-                altitude_m,
-                battery_percent,
-                pitch_deg,
-                roll_deg,
-                yaw_deg,
-                motor_rpm,
-                gps_lat,
-                gps_lon
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            timestamp,
-            altitude,
-            battery,
-            pitch,
-            roll,
-            yaw,
-            motor_rpm,
-            gps_lat,
-            gps_lon
-        ))
+        insert_row(
+            cursor, timestamp, "takeoff", altitude, battery,
+            pitch, roll, yaw, motor_rpm, gps_lat, gps_lon
+        )
 
     # -------------------------
     # PHASE 2: CLIMB
@@ -84,30 +106,10 @@ def main() -> None:
         gps_lat += random.uniform(0.00001, 0.00003)
         gps_lon += random.uniform(0.00001, 0.00003)
 
-        cursor.execute("""
-            INSERT INTO flight_logs (
-                timestamp_seconds,
-                altitude_m,
-                battery_percent,
-                pitch_deg,
-                roll_deg,
-                yaw_deg,
-                motor_rpm,
-                gps_lat,
-                gps_lon
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            timestamp,
-            altitude,
-            battery,
-            pitch,
-            roll,
-            yaw,
-            motor_rpm,
-            gps_lat,
-            gps_lon
-        ))
+        insert_row(
+            cursor, timestamp, "climb", altitude, battery,
+            pitch, roll, yaw, motor_rpm, gps_lat, gps_lon
+        )
 
     # -------------------------
     # PHASE 3: CRUISE
@@ -123,30 +125,10 @@ def main() -> None:
         gps_lat += random.uniform(0.00002, 0.00005)
         gps_lon += random.uniform(0.00002, 0.00005)
 
-        cursor.execute("""
-            INSERT INTO flight_logs (
-                timestamp_seconds,
-                altitude_m,
-                battery_percent,
-                pitch_deg,
-                roll_deg,
-                yaw_deg,
-                motor_rpm,
-                gps_lat,
-                gps_lon
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            timestamp,
-            altitude,
-            battery,
-            pitch,
-            roll,
-            yaw,
-            motor_rpm,
-            gps_lat,
-            gps_lon
-        ))
+        insert_row(
+            cursor, timestamp, "cruise", altitude, battery,
+            pitch, roll, yaw, motor_rpm, gps_lat, gps_lon
+        )
 
     # -------------------------
     # PHASE 4: DESCENT
@@ -162,30 +144,10 @@ def main() -> None:
         gps_lat += random.uniform(0.00001, 0.00003)
         gps_lon += random.uniform(0.00001, 0.00003)
 
-        cursor.execute("""
-            INSERT INTO flight_logs (
-                timestamp_seconds,
-                altitude_m,
-                battery_percent,
-                pitch_deg,
-                roll_deg,
-                yaw_deg,
-                motor_rpm,
-                gps_lat,
-                gps_lon
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            timestamp,
-            altitude,
-            battery,
-            pitch,
-            roll,
-            yaw,
-            motor_rpm,
-            gps_lat,
-            gps_lon
-        ))
+        insert_row(
+            cursor, timestamp, "descent", altitude, battery,
+            pitch, roll, yaw, motor_rpm, gps_lat, gps_lon
+        )
 
     # -------------------------
     # PHASE 5: LANDING
@@ -203,30 +165,10 @@ def main() -> None:
         gps_lat += random.uniform(-0.00001, 0.00001)
         gps_lon += random.uniform(-0.00001, 0.00001)
 
-        cursor.execute("""
-            INSERT INTO flight_logs (
-                timestamp_seconds,
-                altitude_m,
-                battery_percent,
-                pitch_deg,
-                roll_deg,
-                yaw_deg,
-                motor_rpm,
-                gps_lat,
-                gps_lon
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            timestamp,
-            altitude,
-            battery,
-            pitch,
-            roll,
-            yaw,
-            motor_rpm,
-            gps_lat,
-            gps_lon
-        ))
+        insert_row(
+            cursor, timestamp, "landing", altitude, battery,
+            pitch, roll, yaw, motor_rpm, gps_lat, gps_lon
+        )
 
     # Save inserted rows
     connection.commit()
