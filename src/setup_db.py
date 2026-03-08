@@ -33,12 +33,36 @@ def main() -> None:
         )
     """)
 
+    # Create Indexes
+
+    cursor.execute("""
+                   CREATE INDEX IF NOT EXISTS idx_flight_log_timestamp
+                   ON flight_logs (timestamp_seconds)
+                   """)
+    cursor.execute("""
+                   CREATE INDEX IF NOT EXISTS idx_flight_logs_phase
+                   ON flight_logs (phase)
+                   """)
+    cursor.execute("""
+                   CREATE INDEX IF NOT EXISTS idx_flight_logs_battery
+                   ON flight_logs (battery_percent)
+                   """)
+    cursor.execute("""
+                   CREATE INDEX IF NOT EXISTS idx_flight_logs_motor_rpm
+                   ON flight_logs (motor_rpm)
+                   """)
+
     # Save the table creation
     connection.commit()
 
     print("Database setup complete.")
     print(f"Database path: {db_path}")
     print("Table ready: flight_logs (with phase column)")
+    print("Indexes ready:")
+    print("- idx_flight_logs_timestamp")
+    print("- idx_flight_logs_phase")
+    print("- idx_flight_logs_battery")
+    print("- idx_flight_logs_motor_rpm")
 
     # Close the database connection
     connection.close()
