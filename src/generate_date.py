@@ -76,7 +76,7 @@ def main() -> None:
     # -------------------------
     # PHASE 1: TAKEOFF
     # -------------------------
-    for _ in range(takeoff_steps):
+    for step in range(takeoff_steps):
         timestamp += 1.0
         altitude += 0.3
         battery -= 0.15
@@ -87,6 +87,11 @@ def main() -> None:
         gps_lat += random.uniform(-0.00001, 0.00001)
         gps_lon += random.uniform(-0.00001, 0.00001)
 
+        # Inject one takeoff anomaly: sudden tilt
+        if step == 12:
+            pitch = 11.5  # deliberate abnormal pitch event
+            roll = -9.0   # deliberate abnormal roll event
+
         insert_row(
             cursor, timestamp, "takeoff", altitude, battery,
             pitch, roll, yaw, motor_rpm, gps_lat, gps_lon
@@ -95,7 +100,7 @@ def main() -> None:
     # -------------------------
     # PHASE 2: CLIMB
     # -------------------------
-    for _ in range(climb_steps):
+    for step in range(climb_steps):
         timestamp += 1.0
         altitude += 0.5
         battery -= 0.18
@@ -106,6 +111,10 @@ def main() -> None:
         gps_lat += random.uniform(0.00001, 0.00003)
         gps_lon += random.uniform(0.00001, 0.00003)
 
+        # Inject one climb anomaly: motor stress spike
+        if step == 18:
+            motor_rpm = 4700  # unusually high RPM spike
+
         insert_row(
             cursor, timestamp, "climb", altitude, battery,
             pitch, roll, yaw, motor_rpm, gps_lat, gps_lon
@@ -114,7 +123,7 @@ def main() -> None:
     # -------------------------
     # PHASE 3: CRUISE
     # -------------------------
-    for _ in range(cruise_steps):
+    for step in range(cruise_steps):
         timestamp += 1.0
         altitude += random.uniform(-0.1, 0.1)
         battery -= 0.12
@@ -125,6 +134,10 @@ def main() -> None:
         gps_lat += random.uniform(0.00002, 0.00005)
         gps_lon += random.uniform(0.00002, 0.00005)
 
+        # Inject one cruise anomaly: strong roll disturbance
+        if step == 22:
+            roll = 12.0  # deliberate large roll event
+
         insert_row(
             cursor, timestamp, "cruise", altitude, battery,
             pitch, roll, yaw, motor_rpm, gps_lat, gps_lon
@@ -133,7 +146,7 @@ def main() -> None:
     # -------------------------
     # PHASE 4: DESCENT
     # -------------------------
-    for _ in range(descent_steps):
+    for step in range(descent_steps):
         timestamp += 1.0
         altitude -= 0.4
         battery -= 0.10
@@ -144,6 +157,10 @@ def main() -> None:
         gps_lat += random.uniform(0.00001, 0.00003)
         gps_lon += random.uniform(0.00001, 0.00003)
 
+        # Inject one descent anomaly: sudden pitch drop
+        if step == 10:
+            pitch = -10.5  # deliberate abnormal pitch event
+
         insert_row(
             cursor, timestamp, "descent", altitude, battery,
             pitch, roll, yaw, motor_rpm, gps_lat, gps_lon
@@ -152,7 +169,7 @@ def main() -> None:
     # -------------------------
     # PHASE 5: LANDING
     # -------------------------
-    for _ in range(landing_steps):
+    for step in range(landing_steps):
         timestamp += 1.0
         altitude -= 0.25
         if altitude < 0:
@@ -164,6 +181,10 @@ def main() -> None:
         motor_rpm = random.randint(2200, 2800)
         gps_lat += random.uniform(-0.00001, 0.00001)
         gps_lon += random.uniform(-0.00001, 0.00001)
+
+        # Inject one landing anomaly: very low battery warning region
+        if step >= 15:
+            battery -= 0.35  # stronger drain near landing
 
         insert_row(
             cursor, timestamp, "landing", altitude, battery,
