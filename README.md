@@ -183,7 +183,7 @@ ON flight_logs(motor_rpm);
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
     drone-flight-telemetry-sql
 
@@ -207,27 +207,27 @@ ON flight_logs(motor_rpm);
 
 ---
 
-# ▶️ How To Run The Project
+# How To Run The Project
 
-### 1️⃣ Create database
+### Create database
 
 ```bash
 python src/setup_db.py
 ```
 
-### 2️⃣ Generate simulated telemetry
+### Generate simulated telemetry
 
 ```bash
 python src/generate_data.py
 ```
 
-### 3️⃣ Launch telemetry dashboard
+### Launch telemetry dashboard
 
 ```bash
 python src/dashboard.py
 ```
 
-### 4️⃣ Generate flight report
+### Generate flight report
 
 ```bash
 python src/report.py
@@ -235,7 +235,7 @@ python src/report.py
 
 ---
 
-# 🧠 What I Learned
+# What I Learned
 
 Through this project I explored how telemetry pipelines in robotics
 systems are designed and analyzed.
@@ -254,7 +254,7 @@ operations**.
 
 ---
 
-# 🚀 Future Improvements
+# Future Improvements
 
 Potential next steps include:
 
@@ -266,7 +266,7 @@ Potential next steps include:
 
 ---
 
-# 📌 Resume Description
+# Resume Description
 
 Designed and implemented a drone telemetry analysis pipeline using
 Python and SQLite. Simulated flight data, stored telemetry in a
@@ -275,7 +275,7 @@ detection, phase analysis, and automated reporting.
 
 ---
 
-# ⭐ Skills Demonstrated
+# Skills Demonstrated
 
 Python\
 SQL / SQLite\
