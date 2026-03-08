@@ -62,27 +62,6 @@ Total telemetry rows generated:
 
 ---
 
-# Telemetry Database Schema
-
-The telemetry data is stored in a relational SQLite table.
-
-Column Description
-
----
-
-timestamp_seconds Time since flight start
-phase Flight phase
-altitude_m Altitude in meters
-battery_percent Remaining battery
-pitch_deg Pitch orientation
-roll_deg Roll orientation
-yaw_deg Yaw orientation
-motor_rpm Motor speed
-gps_lat GPS latitude
-gps_lon GPS longitude
-
----
-
 # SQL Analytics
 
 Several SQL queries analyze the simulated flight data.
