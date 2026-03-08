@@ -1,0 +1,26 @@
+DRONE FLIGHT SUMMARY REPORT
+========================================
+
+Overall Flight Summary
+------------------------
+Total telemetry rows: 140
+Flight duration: 140.00 seconds
+Maximum altitude: 21.09 m
+Minimum battery: 80.45 %
+Average motor RPM: 3192.76
+
+Anomaly Summary
+----------------
+High-tilt events: 3
+High-RPM events: 1
+Low-battery warning rows: 33
+
+Phase Summary
+-------------
+cruise     | avg altitude =  20.78 m | avg RPM = 3198.40
+descent    | avg altitude =  14.52 m | avg RPM = 3020.00
+climb      | avg altitude =  13.75 m | avg RPM = 3714.63
+landing    | avg altitude =   6.09 m | avg RPM = 2457.90
+takeoff    | avg altitude =   3.15 m | avg RPM = 3392.70
+
+End of report.
