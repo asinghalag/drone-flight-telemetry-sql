@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
+# Database
+data/*.db
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
