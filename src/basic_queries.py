@@ -31,6 +31,7 @@ def main() -> None:
     dangerous_tilts = cursor.fetchone()[0]
 
     print("\n Drone Flight Analysis:")
+    print("-----------------------")
     print(f"Maximum Altitude: {max_altitude:.2f} m")
     print(f"Minimum Battery: {min_battery:.2f}%")
     print(f"Average Motor RPM: {avg_motor_rpm:.2f}")
