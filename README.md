@@ -1,4 +1,4 @@
-# 🚁 Drone Flight Telemetry Analysis
+# Drone Flight Telemetry Analysis
 
 ### Python + SQL Telemetry Pipeline Simulation
 
@@ -9,7 +9,7 @@
 
 ---
 
-# 📌 Project Overview
+# Project Overview
 
 In this project I explored how robotic systems store and analyze
 telemetry data generated during operation.
@@ -33,7 +33,7 @@ robotics telemetry concepts**.
 
 ---
 
-# ✈️ Simulated Drone Flight
+# Simulated Drone Flight
 
 The simulator generates a full drone flight consisting of five phases:
 
@@ -62,7 +62,7 @@ Total telemetry rows generated:
 
 ---
 
-# 🗄 Telemetry Database Schema
+# Telemetry Database Schema
 
 The telemetry data is stored in a relational SQLite table.
 
@@ -83,7 +83,7 @@ gps_lon GPS longitude
 
 ---
 
-# 📊 SQL Analytics
+# SQL Analytics
 
 Several SQL queries analyze the simulated flight data.
 
@@ -122,7 +122,7 @@ GROUP BY time_bucket;
 
 ---
 
-# ⚠️ Anomaly Detection
+# Anomaly Detection
 
 The simulator injects several abnormal events to demonstrate telemetry
 monitoring.
@@ -137,7 +137,7 @@ SQL queries detect these anomalies and summarize their frequency.
 
 ---
 
-# 🖥 Terminal Dashboard
+# Terminal Dashboard
 
 The project includes a simple terminal telemetry dashboard.
 
@@ -163,7 +163,7 @@ Example output:
 
 ---
 
-# 📄 Automated Flight Report
+# Automated Flight Report
 
 Generate a structured flight summary:
 
@@ -184,7 +184,7 @@ The report summarizes:
 
 ---
 
-# ⚡ Database Optimization
+# Database Optimization
 
 Indexes were added to improve query performance.
 
